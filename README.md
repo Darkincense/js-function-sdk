@@ -13,27 +13,33 @@ let use = new useSDK();
 
 ## 检测两个对象是否相等
 deepCheck  表示深度判断
+
 use.equalObject(obj1, obj2, deepCheck)
 
 
 ## 检测两个数组是否相等
 deepCheck  表示深度判断
+
 use.equalArray(arr1, arr2, deepCheck)
 
 
 ## 检测两个函数是否相等
 deepCheck  表示深度判断
+
 use.equalFunction(fun1, fun2, deepCheck)
 
 
 ## 十位的时间戳转换成时间格式
 hasHour 表示是否显示时分秒
+
 use.timestampToTime(timestamp, hasHour)
 
 
 ## 初始化页面rem布局
 designWidth   设计图尺寸
+
 vfontSize     基本字号
+
 use.remInit(designWidth = 375, vfontSize = 16)
 
 
@@ -47,15 +53,20 @@ use.ArrHeavy()
 
 ## 微信h5登录
 appid       公众号appid
+
 fun         登录成功的回调函数
+
 url         重新定向的域名（可省略）
+
 use.publicHwxLogin(appid, fun, url)
 
 
 
 ## 获取url后面的参数
 key         要取的值
+
 href        取值的链接
+
 use.getQueryValue(key,href)
 
 
