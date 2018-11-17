@@ -76,10 +76,15 @@ use.arrayRandom(arr)
 
 ## 原生ajax请求
 use.ajax({
+
     method:'',
+
     url:'',
+
     data:'',
+
     contentType:'',
+    
     success: function(res){
         
     }
