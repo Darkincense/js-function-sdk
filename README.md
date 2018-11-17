@@ -6,7 +6,7 @@ npm install js-function-sdk
 
 
 ## 使用：
-import useSDK from 'js-function-sdk';
+import { useSDK } from 'js-function-sdk';
 
 let use = new useSDK();
 
