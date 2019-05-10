@@ -1,6 +1,15 @@
-function useSDK() {}
+function Core() {}
 
-useSDK.prototype = {
+Core.prototype = {
+  /**
+   * 返回指定变量的数据类型
+   * @param  {Any} data
+   * @return {String}
+   */
+  type: function(data) {
+    return Object.prototype.toString.call(data).slice(8, -1);
+  },
+
   /**
    * 判断两个对象是否相等
    * 浅度判断：
@@ -65,15 +74,6 @@ useSDK.prototype = {
       }
     }
     return true;
-  },
-
-  /**
-   * 返回指定变量的数据类型
-   * @param  {Any} data
-   * @return {String}
-   */
-  type: function(data) {
-    return Object.prototype.toString.call(data).slice(8, -1);
   },
 
   /**
@@ -189,64 +189,19 @@ useSDK.prototype = {
    * @param {*} designWidth  设计图宽度
    */
   remInit: function(designWidth = 375, vfontSize = 16) {
-    // var vM = 375;
-    var vM = designWidth;
-    // var vfontSize = 16;
-    var vfontSize = vfontSize;
-    var html = document.documentElement;
-    var newfontSize = (vfontSize * html.clientWidth) / vM;
-    html.style.fontSize = newfontSize + "px";
-  },
-
-  /**
-   * 数字前面补零
-   * @param {*} num   需要前面补零的数字
-   * @param {*} n     前面需要补几个数字
-   */
-  PrefixZero: function(num, n) {
-    return (Array(n).join(0) + num).slice(-n);
-  },
-
-  /**
-   * 找出字符串中出现最多的那个字符并返回
-   * @param {*} str  传入要查找的字符串
-   */
-  findMax: function(str) {
-    if (str.length == 1) {
-      return str;
-    }
-    let charObj = {};
-    for (let i = 0; i < str.length; i++) {
-      if (!charObj[str.charAt(i)]) {
-        charObj[str.charAt(i)] = 1;
-      } else {
-        charObj[str.charAt(i)] += 1;
-      }
-    }
-
-    let maxChar = "",
-      maxValue = 1;
-    for (var k in charObj) {
-      if (charObj[k] >= maxValue) {
-        maxChar = k;
-        maxValue = charObj[k];
-      }
-    }
-
-    return maxChar;
-  },
-  /**
-   * 数组去重 借助indexOf()方法判断此元素在该数组中首次出现的位置下标与循环的下标是否相等
-   * @param {*} arr  要去重的数组
-   */
-  ArrHeavy: function(arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (arr.indexOf(arr[i]) != i) {
-        arr.splice(i, 1); //删除数组元素后数组长度减1后面的元素前移
-        i--; //数组下标回退
-      }
-    }
-    return arr;
+    var resizeEvt =
+        "orientationchange" in window ? "orientationchange" : "resize",
+      setRemResponse = function() {
+        // var vM = 375;
+        var vM = designWidth;
+        // var vfontSize = 16;
+        var vfontSize = vfontSize;
+        var html = document.documentElement;
+        var newfontSize = (vfontSize * html.clientWidth) / vM;
+        html.style.fontSize = newfontSize + "px";
+      };
+    document.addEventListener("DOMContentLoaded", setRemResponse, false);
+    window.addEventListener(resizeEvt, setRemResponse, false);
   },
 
   /**
@@ -293,14 +248,7 @@ useSDK.prototype = {
     var match = href.match(new RegExp("[?&]" + key + "=([^&]*)"));
     return (match && match[1] && decodeURIComponent(match[1])) || "";
   },
-  /**
-   * 从数组中随机抽出一项
-   * @param {*} arr  数组
-   */
-  arrayRandom: function(arr) {
-    // var items = [12, 548, 'a', 2, 5478, 'foo', 8852, , 'Doe', 2145, 119];
-    return (randomItem = arr[Math.floor(Math.random() * arr.length)]);
-  },
+
   /* 封装ajax函数
    * @param {string}opt.type http连接的方式，包括POST和GET两种方式
    * @param {string}opt.url 发送请求的url
@@ -346,4 +294,4 @@ useSDK.prototype = {
 };
 
 //此时，People就被视为构造函数，可以用new来实例化了
-module.exports = useSDK;
+module.exports = new Core();

@@ -1,7 +1,9 @@
-var useSDK = require("./lib/Cloud-code");
-var other = require("./lib/other");
+var Core = require("./src/core");
+var Array = require("./src/array");
+var Sring = require("./src/string");
 
 module.exports = {
-  useSDK: useSDK,
-  other: other
+  Core,
+  Array,
+  Sring
 };

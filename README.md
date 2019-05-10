@@ -1,93 +1,93 @@
-## npm-page
+# js-function-sdk
 
-npm 工具包 js-function-sdk
+> A collection of useful Jascript functions and can use every day
 
-## 安装：
+## Install
 
+```js
 npm install js-function-sdk
+```
 
-## 使用：
+## Core
 
-import { useSDK } from 'js-function-sdk';
+> Core module
 
-let use = new useSDK();
+### Usage
 
-## 检测两个对象是否相等
+```js
+import { Core } from "js-function-sdk";
+```
 
-deepCheck 表示深度判断
+- 判断数据类型
 
-use.equalObject(obj1, obj2, deepCheck)
+```js
+// Return: String、Number、Boolean、Function、Array、Object、Null
+Core.type(obj);
+```
 
-## 检测两个数组是否相等
+- 检测两个对象是否相等
 
-deepCheck 表示深度判断
+```js
+// Argument: deepCheck 表示深度判断
 
-use.equalArray(arr1, arr2, deepCheck)
+Core.equalObject(obj1, obj2, deepCheck);
+```
 
-## 检测两个函数是否相等
+- 检测两个数组是否相等
 
-deepCheck 表示深度判断
+```js
+Core.equalArray(arr1, arr2, deepCheck);
+```
 
-use.equalFunction(fun1, fun2, deepCheck)
+- 检测两个函数是否相等
 
-## 十位的时间戳转换成时间格式
+```js
+Core.equalFunction(fun1, fun2, deepCheck);
+```
 
-hasHour 表示是否显示时分秒
+- 十位的时间戳转换成时间格式
 
-use.timestampToTime(timestamp, hasHour)
+```js
+// Argument: hasHour 表示是否显示时分秒
+Core.timestampToTime(timestamp, hasHour);
+```
 
-## 初始化页面 rem 布局
+- 初始化页面 rem 布局
 
-designWidth 设计图尺寸
+```js
+// Argument: designWidth 设计图尺寸
+// Argument: vfontSize 基本字号
 
-vfontSize 基本字号
+Core.remInit((designWidth = 375), (vfontSize = 16));
+```
 
-use.remInit(designWidth = 375, vfontSize = 16)
+- 微信 h5 登录
 
-## 找出字符串中出现最多的那个字符并返回
+```js
+// Argument: appid 公众号 appid
+// Argument: fun 登录成功的回调函数
+// Argument: url 重新定向的域名（可省略）
 
-use.findMax(str)
+Core.publicHwxLogin(appid, fun, url);
+```
 
-## 数组去重
+- 获取 url 后面的参数
 
-use.ArrHeavy()
+```js
+// Argument: key 要取的值
+// Argument: href 取值的链接
 
-## 微信 h5 登录
+Core.getQueryValue(key, href);
+```
 
-appid 公众号 appid
+- 原生 ajax 请求
 
-fun 登录成功的回调函数
-
-url 重新定向的域名（可省略）
-
-use.publicHwxLogin(appid, fun, url)
-
-## 获取 url 后面的参数
-
-key 要取的值
-
-href 取值的链接
-
-use.getQueryValue(key,href)
-
-## 从数组中随机抽出一项
-
-use.arrayRandom(arr)
-
-## 原生 ajax 请求
-
-use.ajax({
-
-    method:'',
-
-    url:'',
-
-    data:'',
-
-    contentType:'',
-
-    success: function(res){
-
-    }
-
-})
+```js
+Core.ajax({
+  method: "",
+  url: "",
+  data: "",
+  contentType: "",
+  success: function(res) {}
+});
+```
