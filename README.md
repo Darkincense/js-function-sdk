@@ -1,6 +1,6 @@
 # js-function-sdk
 
-> A collection of useful Jascript functions and can use every day
+> A collection of useful Javascript functions and can use every day
 
 ## Install
 
