@@ -1,4 +1,4 @@
-# js-function-sdk
+# js-function-sdk [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Darkincense/js-function-sdk)
 
 > A collection of useful Javascript functions and can use every day
 
@@ -25,38 +25,42 @@ import { Core } from "js-function-sdk";
 Core.type(obj);
 ```
 
-- 检测两个对象是否相等
+- 对象扩展
 
 ```js
-// Argument: deepCheck 表示深度判断
-
-Core.equalObject(obj1, obj2, deepCheck);
+Core.extend(obj);
 ```
 
-- 检测两个数组是否相等
+- 事件监听
 
 ```js
-Core.equalArray(arr1, arr2, deepCheck);
+//  Param: a dom 元素
+//  Param: b 事件类型 click change scroll
+//  Param: c function
+//  Param: d  参数默认false=》冒泡，true为捕获
+Core.addEvent(a, b, c, d);
 ```
 
-- 检测两个函数是否相等
+- 移除事件监听
 
 ```js
-Core.equalFunction(fun1, fun2, deepCheck);
+//  Params: 与事件监听一致
+Core.removeEvent(a, b, c, d);
 ```
 
-- 十位的时间戳转换成时间格式
+- 设置样式
 
 ```js
-// Argument: hasHour 表示是否显示时分秒
-Core.timestampToTime(timestamp, hasHour);
+//  Param: ele dom 元素
+//  Param: styleObj 属性样式
+Core.setStyle(ele, styleObj);
 ```
 
 - 初始化页面 rem 布局
 
 ```js
-// Argument: designWidth 设计图尺寸
-// Argument: vfontSize 基本字号
+// Param: designWidth 设计图尺寸
+// Param: vfontSize 基本字号
 
 Core.remInit((designWidth = 375), (vfontSize = 16));
 ```
@@ -64,9 +68,9 @@ Core.remInit((designWidth = 375), (vfontSize = 16));
 - 微信 h5 登录
 
 ```js
-// Argument: appid 公众号 appid
-// Argument: fun 登录成功的回调函数
-// Argument: url 重新定向的域名（可省略）
+// Param: appid 公众号 appid
+// Param: fun 登录成功的回调函数
+// Param: url 重新定向的域名（可省略）
 
 Core.publicHwxLogin(appid, fun, url);
 ```
@@ -74,10 +78,19 @@ Core.publicHwxLogin(appid, fun, url);
 - 获取 url 后面的参数
 
 ```js
-// Argument: key 要取的值
-// Argument: href 取值的链接
+// Param: key 要取的值
+// Param: href 取值的链接
 
-Core.getQueryValue(key, href);
+Core.getQueryValue(href, key);
+```
+
+- 数字精度处理
+
+```js
+// Param: number 数字
+// Param: fractionDigits 小数位数
+
+Core.toFixed(number, fractionDigits);
 ```
 
 - 原生 ajax 请求
@@ -91,3 +104,15 @@ Core.ajax({
   success: function(res) {}
 });
 ```
+
+## About
+
+### Contributors
+
+- [RainBow](https://github.com/xiaoyueyue165)
+- [StuLian](https://github.com/StuLian)
+
+### License
+
+Copyright © 2019, [Darkincense](https://github.com/Darkincense).
+Released under the [MIT License](LICENSE).

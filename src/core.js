@@ -9,178 +9,45 @@ Core.prototype = {
   type: function(data) {
     return Object.prototype.toString.call(data).slice(8, -1);
   },
-
   /**
-   * 判断两个对象是否相等
-   * 浅度判断：
-   * 1.只判断obj的第一层属性总数是否一样
-   * 2.值的===判断是否为真
-   * 深度判断：
-   * 值为对象，参考本规则
-   * 值为数组，参考equalArray的深度判断
-   * 值为其他类型，用===判断
-   * @param  {[type]} obj1
-   * @param  {[type]} obj2
-   * @param  {[type]} deepCheck
-   * @return {[type]}
+   * 对象扩展
+   * @param {*} target
+   * arguments obj ...
+   * @returns obj
    */
-  equalObject: function(obj1, obj2, deepCheck) {
-    if (obj1 === obj2) {
-      return true;
-    }
-    // 属性总数不等，直接返回false
-    var size1 = 0;
-    for (var key in obj1) {
-      size1++;
-    }
-    var size2 = 0;
-    for (var key in obj2) {
-      size2++;
-    }
-    if (size1 !== size2) {
-      return false;
-    }
-
-    if (!deepCheck) {
-      // 浅度判断
-      for (var key in obj1) {
-        if (obj1[key] !== obj2[key]) {
-          return false;
+  extend: function(target) {
+    for (var i = 1, len = arguments.length; i < len; i++) {
+      for (var prop in arguments[i]) {
+        if (arguments[i].hasOwnProperty(prop)) {
+          target[prop] = arguments[i][prop];
         }
       }
-      return true;
     }
-    var type1, type2;
-    for (var key in obj1) {
-      type1 = this.type(obj1[key]);
-      type2 = this.type(obj2[key]);
-      if (type1 !== type2) {
-        return false;
-      }
-      if (type1 === "Object") {
-        if (!this.equalObject(obj1[key], obj2[key], true)) {
-          return false;
-        }
-      } else if (type1 === "Array") {
-        if (!this.equalArray(obj1[key], obj2[key], true)) {
-          return false;
-        }
-      } else if (type1 === "Function") {
-        if (!this.equalFunction(obj1[key], obj2[key], true)) {
-          return false;
-        }
-      } else if (obj1[key] !== obj2[key]) {
-        return false;
-      }
-    }
-    return true;
+    return target;
   },
-
   /**
-   * 判断两个数组是否相等
-   * 浅度相等：两数组toString一样
-   * 深度相等的判断规则：
-   * 1.长度相等
-   * 2.俩数组的每一项：
-   * 若为数组：参考本函数规则。
-   * 若为对象：参考equalObject的规则。
-   * 其他的数据类型，要求===判断为true
-   * @param  {[type]} arr1
-   * @param  {[type]} arr2
-   * @param  {[type]} deepCheck
-   * @return {[type]}
-   */
-  equalArray: function(arr1, arr2, deepCheck) {
-    if (arr1 === arr2) {
-      return true;
-    }
-    // 长度不等，不用继续判断
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
-    // 浅度检查
-    if (!deepCheck) {
-      return arr1.toString() === arr2.toString();
-    }
-    // 判断每个基本数据类型是否一样
-    var type1, type2; // 数组每一项的数据类型
-    for (var i = 0; i < arr1.length; i++) {
-      type1 = this.type(arr1[i]);
-      type2 = this.type(arr2[i]);
-
-      // 数据类型不一样，无需判断
-      if (type1 !== type2) {
-        return false;
-      }
-
-      if (type1 === "Array") {
-        if (!this.equalArray(arr1[i], arr2[i], true)) {
-          return false;
-        }
-      } else if (type1 === "Object") {
-        if (!this.equalObject(arr1[i], arr2[i], true)) {
-          return false;
-        }
-      } else if (arr1[i] !== arr2[i]) {
-        return false;
-      }
-    }
-    return true;
-  },
-
-  /**
-   * 对比两个function是否一样
-   * 主要对比两者toString是否一样，
-   * 对比会去掉函数名进行对比，其它哪怕差个回车都会返回false
    *
-   * @param  {[type]} fn1
-   * @param  {[type]} fn2
-   * @return {[type]}
+   *
+   * @param {*} a dom 元素
+   * @param {*} b 事件类型 click change scroll
+   * @param {*} c function
+   * @param {*} d  参数默认false=》冒泡，true为捕获
    */
-  equalFunction: function(fn1, fn2) {
-    var type1 = this.type(fn1),
-      type2 = this.type(fn2);
-    if (type1 !== type2 || type1 !== "Function") {
-      return false;
-    }
-    if (fn1 === fn2) {
-      return true;
-    }
-    var reg = /^function[\s]*?([\w]*?)\([^\)]*?\){/;
-    var str1 = fn1.toString().replace(reg, function($, $1) {
-      return $.replace($1, "");
-    });
-    var str2 = fn2.toString().replace(reg, function($, $1) {
-      return $.replace($1, "");
-    });
-    // console.log(str1, str2);
-    if (str1 !== str2) {
-      return false;
-    }
-    return true;
+  addEvent: function(a, b, c, d) {
+    a.addEventListener
+      ? a.addEventListener(b, c, d)
+      : a.attachEvent("on" + b, c);
+  },
+  // removeEvent(objOverLay, 'click', eMsgClose)
+  removeEvent: function(a, b, c, d) {
+    a.removeEventListener
+      ? a.removeEventListener(b, c, d)
+      : a.detachEvent("on" + b, c);
   },
 
-  /**
-   * 时间戳转换成时间
-   * @param {*} timestamp 时间戳
-   * @param {*} hasHour 是否显示带有时分秒
-   */
-  timestampToTime: function(timestamp, hasHour) {
-    var date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-    Y = date.getFullYear() + "-";
-    M =
-      (date.getMonth() + 1 < 10
-        ? "0" + (date.getMonth() + 1)
-        : date.getMonth() + 1) + "-";
-    D = date.getDate() + " ";
-    h = date.getHours() + ":";
-    m = date.getMinutes() + ":";
-    s = date.getSeconds();
-
-    if (hasHour) {
-      return Y + M + D + h + m + s;
-    } else {
-      return Y + M + D;
+  setStyle: function(ele, styleObj) {
+    for (var i in styleObj) {
+      ele.style[i] = styleObj[i];
     }
   },
 
@@ -240,13 +107,25 @@ Core.prototype = {
   },
   /**
    * 获取url后面的参数
-   * @param {*} key   要取的值
    * @param {*} href  取值的链接
+   * @param {*} key   要取的值
    */
-  getQueryValue: function(key, href) {
+  getQueryValue: function(href, key) {
     href = href || window.location.search;
     var match = href.match(new RegExp("[?&]" + key + "=([^&]*)"));
     return (match && match[1] && decodeURIComponent(match[1])) || "";
+  },
+  /**
+   * 四舍五入 格式化数字
+   *
+   * @param {*} number 8440.55
+   * @param {*} fractionDigits 1 小数位数
+   * @returns 8440.6
+   */
+  toFixed: function(number, fractionDigits) {
+    var times = Math.pow(10, fractionDigits);
+    var roundNum = Math.round(number * times) / times;
+    return roundNum.toFixed(fractionDigits);
   },
 
   /* 封装ajax函数
@@ -290,8 +169,34 @@ Core.prototype = {
         opt.success(response);
       }
     };
+  },
+  /**
+   * 防抖 一定时间内连续调用只允许执行一次
+   *
+   * @param {*} func
+   * @param {*} wait 等待时间
+   * @param {*} immediate 传 true，首次调用即立即执行
+   * @returns
+   */
+  debounce: function(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this;
+      var args = arguments;
+      if (timeout) clearTimeout(timeout);
+      if (immediate) {
+        var canApply = !timeout;
+        timeout = setTimeout(function() {
+          timeout = null; // 在 wait 时间后防抖函数才可以再次被触发
+        }, wait);
+        if (canApply) func.apply(context, args); // 第一次 !undefined 执行
+      } else {
+        timeout = setTimeout(() => {
+          func.apply(context, args);
+        }, wait);
+      }
+    };
   }
 };
 
-//此时，People就被视为构造函数，可以用new来实例化了
 module.exports = new Core();

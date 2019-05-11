@@ -1,3 +1,4 @@
+const addKey = require("addkey");
 function Array() {}
 Array.prototype = {
   /**
@@ -59,6 +60,7 @@ Array.prototype = {
     var index = array.indexOf(element);
     return index;
   },
+  addKey: addKey,
   // 数组最大值，最小值
   max: function(arr) {
     return Math.max.apply(null, arr);
