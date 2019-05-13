@@ -1,6 +1,6 @@
 {
   "name": "js-function-sdk",
-  "version": "1.2.3",
+  "version": "0.0.1",
   "description": "A collection of useful Javascript functions and can use every day",
   "main": "index.js",
   "scripts": {

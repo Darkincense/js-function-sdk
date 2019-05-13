@@ -105,6 +105,18 @@ Core.ajax({
 });
 ```
 
+## Array
+
+- addKey，过滤数组子项添加新项目
+
+```js
+// Param: arr 原数组
+// Param: object 扩展对象(可省略)
+// Param: filterFn 过滤子项函数(可省略)
+
+Core.addKey(arr, object, filterFn);
+```
+
 ## About
 
 ### Contributors
