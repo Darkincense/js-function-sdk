@@ -5,7 +5,7 @@
 ## Install
 
 ```js
-npm install js-function-sdk
+npm i js-function-sdk
 ```
 
 ## Core
