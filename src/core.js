@@ -25,30 +25,46 @@ Core.prototype = {
     }
     return target;
   },
-  /**
-   *
-   *
-   * @param {*} a dom 元素
-   * @param {*} b 事件类型 click change scroll
-   * @param {*} c function
-   * @param {*} d  参数默认false=》冒泡，true为捕获
-   */
-  addEvent: function(a, b, c, d) {
-    a.addEventListener
-      ? a.addEventListener(b, c, d)
-      : a.attachEvent("on" + b, c);
-  },
-  // removeEvent(objOverLay, 'click', eMsgClose)
-  removeEvent: function(a, b, c, d) {
-    a.removeEventListener
-      ? a.removeEventListener(b, c, d)
-      : a.detachEvent("on" + b, c);
-  },
 
-  setStyle: function(ele, styleObj) {
-    for (var i in styleObj) {
-      ele.style[i] = styleObj[i];
+  // 将NodeList转为数组
+  convertToArray: function(nodeList) {
+    var array = null;
+    try {
+      // IE8-NodeList是COM对象
+      array = Array.prototype.slice.call(nodeList, 0);
+    } catch (err) {
+      array = [];
+      for (var i = 0, len = nodeList.length; i < len; i++) {
+        array.push(nodeList[i]);
+      }
     }
+    return array;
+  },
+  shallowCopy: function(obj) {
+    // 只拷贝对象
+    if (typeof obj !== "object") return;
+    // 根据obj的类型判断是新建一个数组还是对象
+    var newObj = obj instanceof Array ? [] : {};
+    // 遍历obj，并且判断是obj的属性才拷贝
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] = obj[key];
+      }
+    }
+    return newObj;
+  },
+  // 对象深度克隆，支持[]和{}
+  // 在拷贝的时候判断一下属性值的类型，如果是对象，我们就递归调用深拷贝函数
+  deepCopy: function(obj) {
+    if (typeof obj !== "object") return;
+    var newObj = obj instanceof Array ? [] : {};
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] =
+          typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key];
+      }
+    }
+    return newObj;
   },
 
   /**

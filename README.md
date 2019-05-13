@@ -31,29 +31,24 @@ Core.type(obj);
 Core.extend(obj);
 ```
 
-- 事件监听
+- 类数组对象转化为数组
 
 ```js
-//  Param: a dom 元素
-//  Param: b 事件类型 click change scroll
-//  Param: c function
-//  Param: d  参数默认false=》冒泡，true为捕获
-Core.addEvent(a, b, c, d);
+//  Param:  obj 类数组对象
+//  Return: Array
+Core.convertToArray(obj);
 ```
 
-- 移除事件监听
+- 浅拷贝
 
 ```js
-//  Params: 与事件监听一致
-Core.removeEvent(a, b, c, d);
+Core.shallowCopy(obj);
 ```
 
-- 设置样式
+- 深拷贝
 
 ```js
-//  Param: ele dom 元素
-//  Param: styleObj 属性样式
-Core.setStyle(ele, styleObj);
+Core.deepCopy(obj);
 ```
 
 - 初始化页面 rem 布局
@@ -105,7 +100,60 @@ Core.ajax({
 });
 ```
 
+## Dom
+
+### Usage
+
+```js
+import { Dom } from "js-function-sdk";
+```
+
+- 获取单个 dom 元素
+
+```js
+//  Param: selector 选择器
+Dom.$(selector);
+```
+
+- 获取多个 dom 元素
+
+```js
+//  Param: selector 选择器
+Dom.$$(selector);
+```
+
+- 事件监听
+
+```js
+//  Param: a dom 元素
+//  Param: b 事件类型 click change scroll
+//  Param: c function
+//  Param: d  参数默认false=》冒泡，true为捕获
+Dom.addEvent(a, b, c, d);
+```
+
+- 移除事件监听
+
+```js
+//  Params: 与事件监听一致
+Dom.removeEvent(a, b, c, d);
+```
+
+- 设置样式
+
+```js
+//  Param: ele dom 元素
+//  Param: styleObj 属性样式
+Dom.setStyle(ele, styleObj);
+```
+
 ## Array
+
+### Usage
+
+```js
+import { Array } from "js-function-sdk";
+```
 
 - addKey，过滤数组子项添加新项目
 
@@ -114,7 +162,40 @@ Core.ajax({
 // Param: object 扩展对象(可省略)
 // Param: filterFn 过滤子项函数(可省略)
 
-Core.addKey(arr, object, filterFn);
+Array.addKey(arr, object, filterFn);
+```
+
+## Date
+
+### Usage
+
+```js
+import { Date } from "js-function-sdk";
+```
+
+- 时间戳转换成时间
+
+```js
+// Param: timestamp 时间戳
+// Param: hasHour 是否显示带有时分秒(可省略)
+
+Date.timestampToTime(timestamp, hasHour);
+```
+
+## String
+
+### Usage
+
+```js
+import { String } from "js-function-sdk";
+```
+
+- 找出字符串中出现最多的那个字符
+
+```js
+// Param: str 传入要查找的字符串
+
+String.findMax(str);
 ```
 
 ## About
