@@ -1,13 +1,13 @@
 {
   "name": "js-function-sdk",
-  "version": "0.1.0",
+  "version": "1.2.3",
   "description": "A collection of useful Javascript functions and can use every day",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {},
   "dependencies": {
     "addkey": "^0.8.0"

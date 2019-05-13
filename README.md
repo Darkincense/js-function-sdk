@@ -1,4 +1,4 @@
-# js-function-sdk [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Darkincense/js-function-sdk)
+# js-function-sdk [![NPM version](https://img.shields.io/npm/v/js-function-sdk.svg?style=flat)](https://www.npmjs.com/package/js-function-sdk) [![NPM monthly downloads](https://img.shields.io/npm/dm/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![NPM total downloads](https://img.shields.io/npm/dt/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Darkincense/js-function-sdk)
 
 > A collection of useful Javascript functions and can use every day
 
