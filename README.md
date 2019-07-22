@@ -1,18 +1,21 @@
-# js-function-sdk [![NPM version](https://img.shields.io/npm/v/js-function-sdk.svg?style=flat)](https://www.npmjs.com/package/js-function-sdk) [![NPM monthly downloads](https://img.shields.io/npm/dm/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![NPM total downloads](https://img.shields.io/npm/dt/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Darkincense/js-function-sdk)
+<h1 align="center">Welcome to js-function-sdk 👋</h1>
+
+[![NPM version](https://img.shields.io/npm/v/js-function-sdk.svg?style=flat)](https://www.npmjs.com/package/js-function-sdk) [![NPM monthly downloads](https://img.shields.io/npm/dm/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![NPM total downloads](https://img.shields.io/npm/dt/js-function-sdk.svg?style=flat)](https://npmjs.org/package/js-function-sdk) [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Darkincense/js-function-sdk)
 
 > A collection of useful Javascript functions and can use every day
 
+### 🏠 [Homepage](https://github.com/Darkincense/js-function-sdk#readme)
+
 ## Install
 
-```js
+```sh
 npm i js-function-sdk
 ```
 
-## Core
+## Usage
 
-> Core module
 
-### Usage
+### Core
 
 ```js
 import { Core } from "js-function-sdk";
@@ -100,9 +103,7 @@ Core.ajax({
 });
 ```
 
-## Dom
-
-### Usage
+### Dom
 
 ```js
 import { Dom } from "js-function-sdk";
@@ -147,9 +148,7 @@ Dom.removeEvent(a, b, c, d);
 Dom.setStyle(ele, styleObj);
 ```
 
-## Array
-
-### Usage
+### Array
 
 ```js
 import { Array } from "js-function-sdk";
@@ -165,9 +164,7 @@ import { Array } from "js-function-sdk";
 Array.addKey(arr, object, filterFn);
 ```
 
-## Date
-
-### Usage
+### Date
 
 ```js
 import { Date } from "js-function-sdk";
@@ -182,9 +179,7 @@ import { Date } from "js-function-sdk";
 Date.timestampToTime(timestamp, hasHour);
 ```
 
-## String
-
-### Usage
+### String
 
 ```js
 import { String } from "js-function-sdk";
@@ -198,14 +193,27 @@ import { String } from "js-function-sdk";
 String.findMax(str);
 ```
 
-## About
+## Author
+
+- Github: [@Darkincense](https://github.com/Darkincense)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Darkincense/js-function-sdk/issues).
 
 ### Contributors
 
 - [RainBow](https://github.com/xiaoyueyue165)
 - [StuLian](https://github.com/StuLian)
 
-### License
+## Show your support
 
-Copyright © 2019, [Darkincense](https://github.com/Darkincense).
-Released under the [MIT License](LICENSE).
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+This project is [MIT](https://github.com/Darkincense/js-function-sdk/blob/master/LICENSE) licensed.
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
